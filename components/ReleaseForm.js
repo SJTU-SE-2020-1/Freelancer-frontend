@@ -9,36 +9,36 @@ class  ReleaseForm extends React.Component{
         return(
             <Form className="release-form">
                 <Form.Item
-                    label="Name/Business name"
+                    label="姓名/企业名称"
                     name = "username"
-                    rules={[{ required: true, message: 'Please input your name or your business name!' }]}
+                    rules={[{ required: true, message: '请输入你的姓名或者企业名称!' }]}
                 >
                     <Input  prefix={<UserOutlined />} />,
 
                 </Form.Item>
 
                 <Form.Item
-                    label="Email"
+                    label="邮箱"
                     name="email"
-                    rules={[{ required: true, message: 'Please input your email!' }]}
+                    rules={[{ required: true, message: '请输入你的邮箱!' }]}
                 >
                     <Input type = "email" />
                 </Form.Item>
 
 
                 <Form.Item
-                    label="Phone"
+                    label="电话"
                     name="phone"
-                    rules={[{ required: true, message: 'Please input your phone!' }]}
+                    rules={[{ required: true, message: '请输入你的电话!' }]}
                 >
                     <Input type = "phone" />
                 </Form.Item>
 
 
                 <Form.Item
-                    label="Task Description"
+                    label="任务描述"
                     name="task description"
-                    rules={[{ required: true, message: 'Please input task description!' }]}
+                    rules={[{ required: true, message: '请输入任务的具体描述!' }]}
                 >
                     <Input
 
@@ -50,9 +50,9 @@ class  ReleaseForm extends React.Component{
                 </Form.Item>
 
                 <Form.Item
-                    label="Budget"
+                    label="任务预算"
                     name="budget"
-                    rules={[{ required: true, message: 'Please input your task budget!' }]}
+                    rules={[{ required: true, message: '请输入任务预算!' }]}
                 >
                     <Input  />
                 </Form.Item>
@@ -62,9 +62,9 @@ class  ReleaseForm extends React.Component{
             >
 
             <Button type="primary" htmlType="submit" className="regist-form-button">
-            submit
+            提交
             </Button>
-    </Form.Item>
+            </Form.Item>
             </Form>
         );
 
