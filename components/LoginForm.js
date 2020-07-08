@@ -11,17 +11,17 @@ class LoginForm extends React.Component{
         return (
             <Form className="login-form">
                 <Form.Item
-                    label="Username"
+                    label="用户名"
                     name = "username"
-                        rules={[{ required: true, message: 'Please input your username!' }]}
+                        rules={[{ required: true, message: '请输入你的用户名！' }]}
                     >
                         <Input />,
 
                 </Form.Item>
                 <Form.Item
-                    label="Password"
+                    label="密码"
                     name="password"
-                    rules={[{ required: true, message: 'Please input your password!' }]}
+                    rules={[{ required: true, message: '请输入你的密码!' }]}
                 >
                     <Input.Password />
                 </Form.Item>
@@ -30,14 +30,14 @@ class LoginForm extends React.Component{
                     valuePropName="checked"
 
                     >
-                    <Checkbox>Remember me</Checkbox>
+                    <Checkbox>记住我(下次自动登录）</Checkbox>
                     <a className="login-form-forgot" href="">
-                        Forgot password
+                        忘记密码
                     </a>
                     <Button type="primary" htmlType="submit" className="login-form-button">
-                        Log in
+                        登录
                     </Button>
-                    Or <a href="">register now!</a>
+                    Or <a href="">注册</a>
                 </Form.Item>
             </Form>
         );

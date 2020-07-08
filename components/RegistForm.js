@@ -10,57 +10,57 @@ class RegistForm extends React.Component{
         return (
             <Form className="regist-form">
                 <Form.Item
-                    label="Username"
+                    label="用户名"
                     name = "registname"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
+                    rules={[{ required: true, message: '请输入用户名!' }]}
                 >
                     <Input type ="text" />,
 
                 </Form.Item>
                 <Form.Item
-                    label="Password"
+                    label="密码"
                     name="r_password"
-                    rules={[{ required: true, message: 'Please input your password!' }]}
+                    rules={[{ required: true, message: '请输入密码!' }]}
                 >
                     <Input type = "password" />
                 </Form.Item>
                 <Form.Item
-                    label="Confirm"
+                    label="再次输入密码"
                     name="confirm"
-                    rules={[{ required: true, message: 'Please input your password again!' }]}
+                    rules={[{ required: true, message: '请再次输入密码!' }]}
                 >
                     <Input type = "password" />
                 </Form.Item>
 
                 <Form.Item
-                    label="Email"
+                    label="邮箱"
                     name="email"
-                    rules={[{ required: true, message: 'Please input your email!' }]}
+                    rules={[{ required: true, message: '请输入你的邮箱!' }]}
                 >
                     <Input type = "email" />
                 </Form.Item>
 
                 <Form.Item
-                    label="Phone"
+                    label="电话"
                     name="phone"
-                    rules={[{ required: true, message: 'Please input your phone!' }]}
+                    rules={[{ required: true, message: '请输入你的电话!' }]}
                 >
                     <Input type = "phone" />
                 </Form.Item>
 
                 <Form.Item
-                    label="Truename"
+                    label="真实姓名"
                     name="truename"
-                    rules={[{ required: true, message: 'Please input your truename!' }]}
+                    rules={[{ required: true, message: '请输入你的真实姓名!' }]}
                 >
                     <Input  />
 
                 </Form.Item>
 
                 <Form.Item
-                    label="Credit_card"
+                    label="信用卡号"
                     name="credit_card"
-                    rules={[{ required: true, message: 'Please input your credit card ID!' }]}
+                    rules={[{ required: true, message: '请输入你的信用卡号!' }]}
                 >
                     <Input type = "credit" />
                 </Form.Item>
@@ -70,7 +70,7 @@ class RegistForm extends React.Component{
                 >
 
                     <Button type="primary" htmlType="submit" className="regist-form-button">
-                        submit
+                        注册
                     </Button>
                 </Form.Item>
             </Form>
