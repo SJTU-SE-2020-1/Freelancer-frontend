@@ -40,7 +40,7 @@ const tailFormItemLayout = {
 };
 
 
-class RegistForm extends React.Component{
+class RegisterForm extends React.Component{
     constructor(props) {
         super(props);
         this.state={
@@ -70,7 +70,7 @@ class RegistForm extends React.Component{
             {...formItemLayout}
             ref={this.formRef}
             name="register"
-            className="regist-form"
+            // className="register-form"
             onFinish={this.onFinish}
             initialValues={{
                 prefix: '86',
@@ -176,12 +176,7 @@ class RegistForm extends React.Component{
             <Form.Item
                     label="信用卡号"
                     name="credit_card"
-                    rules={[{
-                        type: 'number',
-                        min:10000000000000,
-                        max:9999999999999999999,
-                        message: '信用卡号有误',
-                    },
+                    rules={[
                         { required: true, message: '请输入你的信用卡号!' }
                     ]}
                 >
@@ -203,7 +198,9 @@ class RegistForm extends React.Component{
                 </Checkbox>
             </Form.Item>
             <Form.Item {...tailFormItemLayout}>
-                <Button type="primary" htmlType="submit" className="regist-form-button">
+                <Button type="primary" htmlType="submit" 
+                className="form-button"
+                >
                     Register
                 </Button>
 
@@ -214,4 +211,4 @@ class RegistForm extends React.Component{
     );
 }
 };
-export default RegistForm;
+export default RegisterForm;

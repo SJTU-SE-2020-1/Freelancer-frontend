@@ -1,10 +1,6 @@
-.regist-form {
-    max-width: 95%;
-}
-
-.regist-form-button {
+.form-button {
     width: 100%;
-}
+} 
 
 .lg-page{
     position: fixed;

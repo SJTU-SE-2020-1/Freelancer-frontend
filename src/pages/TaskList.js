@@ -1,14 +1,20 @@
 import React from 'react';
-import {List} from 'antd';
+import {List, Layout} from 'antd';
 import {Task} from '../components/Task';
 import {withRouter} from "react-router-dom";
-
+import HeaderMenu from '../components/HeaderMenu';
+const { Header, Footer,  Content } = Layout;
 
 class TaskList extends React.Component {
 
     render() {
         return (
-            <List
+            <Layout>
+                <Header style={{margin:" 0px",padding:" 0px"}} >
+                        <HeaderMenu  style={{width:"100%"}}/>
+                </Header>
+                <Content>
+                <List
                 grid={{gutter: 10, column: 4}}
                 pagination={{
                     onChange: page => {
@@ -23,6 +29,14 @@ class TaskList extends React.Component {
                     </List.Item>
                 )}
             />
+                </Content>
+                <br/>
+                    <br/>
+                    <Footer style={{ textAlign: 'center' }}>
+                                ©SJTU<br/>Freelancer
+                    </Footer>
+            </Layout>
+            
         );
     }
 }
