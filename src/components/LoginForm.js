@@ -21,7 +21,6 @@ class Loginform extends React.Component{
         return (
             <Form
                 name="normal_login"
-                className="login-form"
                 initialValues={{remember: true}}
                 onFinish={this.onSubmit}
             >
@@ -57,7 +56,7 @@ class Loginform extends React.Component{
                 </Form.Item>
 
                 <Form.Item>
-                    <Button type="primary" htmlType="submit" className="login-form-button" >
+                    <Button type="primary" htmlType="submit" className="form-button" >
                     登录
                     </Button>
                     Or <Link to='/register'>注册</Link>

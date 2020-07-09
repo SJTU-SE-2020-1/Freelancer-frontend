@@ -1,6 +1,5 @@
 import React from 'react';
 import {Button, Form, Input,} from 'antd';
-import { UserOutlined } from '@ant-design/icons';
 const { TextArea } = Input;
 
 class  ReleaseForm extends React.Component{
@@ -9,38 +8,19 @@ class  ReleaseForm extends React.Component{
         console.log(values);
         debugger;
         console.log('Received values of form: ', values);
-       //  UserSER.login(values);
    };
     render(){
         return(
-            <Form className="regist-form">
+            <Form onFinish={this.onSubmit}>
                 <Form.Item
-                    label="姓名/企业名称"
-                    name = "username"
-                    rules={[{ required: true, message: '请输入你的姓名或者企业名称!' }]}
+                    label="任务名"
+                    name="title"
+                    rules={[{ required: true, message: '请输入任务的标题!' }]}
                 >
-                    <Input  prefix={<UserOutlined />} />,
+                    <Input
+                        placeholder="任务的关键字"
+                    />
 
-                </Form.Item>
-
-                <Form.Item
-                    label="联系邮箱"
-                    name="email"
-                    rules={[{
-                        type: 'email',
-                        message: '邮箱格式不正确',
-                    },{ required: true, message: '请输入你的邮箱!' }]}
-                >
-                    <Input type = "email" />
-                </Form.Item>
-
-
-                <Form.Item
-                    label="联系电话"
-                    name="phone"
-                    rules={[{ required: true, message: '请输入你的电话!' }]}
-                >
-                    <Input type = "phone" />
                 </Form.Item>
 
 
@@ -53,27 +33,51 @@ class  ReleaseForm extends React.Component{
                         placeholder="0/50~300"
                         autoSize={{ minRows: 3, maxRows: 5 }}
                     />
-
                 </Form.Item>
 
                 <Form.Item
-                    label="任务预算"
-                    name="budget"
+                    label="任务最低预算"
+                    name="lower_payment"
                     rules={[
-                        {type:Number,message:"请输入数字！"},
-                        { required: true, message: '请输入任务预算!' }]}
+                        { required: true, message: '请输入最低任务预算!' },
+                        ({ getFieldValue }) => ({
+                            validator(rule, value) {
+                                let high=getFieldValue("higher_budget");
+                                if (!value ||  (!high||value<=high)) {
+                                    return Promise.resolve();
+                                }
+                                return Promise.reject('请输入小于最高预算的数字');
+                            },
+                        }),
+                    ]}
                 >
-                    <Input prefix="￥" suffix="RMB" />
+                    <Input prefix="￥" suffix="RMB" type="number"/>
                 </Form.Item>
 
-            <Form.Item
-        name="submit"
-            >
+                <Form.Item
+                    label="任务最高预算"
+                    name="higher_payment"
+                    rules={[
+                        { required: true, message: '请输入最高任务预算!' },
+                        ({ getFieldValue }) => ({
+                            validator(rule, value) {
+                                let low=getFieldValue("lower_budget");
+                                if (!value ||  (!low||value>=low)) {
+                                    return Promise.resolve();
+                                }
+                                return Promise.reject('请输入大于最最低预算的数字');
+                            },
+                        }),
+                    ]}
+                >
+                    <Input prefix="￥" suffix="RMB" type="number" />
+                </Form.Item>
 
-            <Button type="primary" htmlType="submit" className="regist-form-button">
-            提交
-            </Button>
-            </Form.Item>
+                <Form.Item>
+                    <Button type="primary" htmlType="submit" className="form-button">
+                        提交
+                    </Button>
+                </Form.Item>
             </Form>
         );
 

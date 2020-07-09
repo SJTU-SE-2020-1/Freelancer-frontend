@@ -1,4 +1,6 @@
 .TaskDetail_mainDiv {
+    margin-right: 10%;
+    margin-left: 10%;
     border: 1px solid #e6e5e5;
     padding-top: 40px;
     overflow: hidden;

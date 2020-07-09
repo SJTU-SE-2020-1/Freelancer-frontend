@@ -1,5 +1,5 @@
 import React from 'react';
-import RegistFrom from "../components/RegistFrom";
+import RegisterFrom from "../components/RegisterFrom";
 import {withRouter} from "react-router-dom";
 import "../css/form.css";
 
@@ -12,7 +12,7 @@ class Register extends React.Component{
                     <div className="lg-box">
                         <h1 className="lg-title">注册</h1>
                         <div className="lg-content">
-                            <RegistFrom/>
+                            <RegisterFrom/>
                         </div>
                     </div>
                 </div>
