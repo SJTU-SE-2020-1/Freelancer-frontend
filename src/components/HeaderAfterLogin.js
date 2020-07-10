@@ -13,8 +13,6 @@ class HeaderMenu extends React.Component {
     }
 
     render(){
-
-
         return(
                     <Menu theme="dark"   mode="horizontal" >
                         <Row>
