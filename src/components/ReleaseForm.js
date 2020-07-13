@@ -3,7 +3,6 @@ import {Button, Form, Input,} from 'antd';
 const { TextArea } = Input;
 
 class  ReleaseForm extends React.Component{
-
     onSubmit = values => {
         console.log(values);
         debugger;

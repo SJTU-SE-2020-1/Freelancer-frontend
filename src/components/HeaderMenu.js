@@ -3,7 +3,7 @@ import {Row,Col, Menu, Button } from 'antd';
 import logo from '../assets/whale.png';
 import font from "../assets/font.png";
 import {Link} from "react-router-dom";
-import {ContainerOutlined,UserOutlined,ProfileOutlined,QuestionCircleOutlined } from '@ant-design/icons';
+// import {ContainerOutlined,UserOutlined,ProfileOutlined,QuestionCircleOutlined } from '@ant-design/icons';
 class HeaderMenu extends React.Component {
     constructor(props) {
         super(props);
@@ -46,7 +46,7 @@ class HeaderMenu extends React.Component {
                                 <Menu.Item key="3" classname="Menu_item" 
                                 //  icon={<UserOutlined />}
                                  >
-                                    <a href="#">
+                                    <a href="/login">
                                         登录
                                     </a>
                                 </Menu.Item>
@@ -55,18 +55,16 @@ class HeaderMenu extends React.Component {
                                 <Menu.Item key="4" classname="Menu_item"  
                                 // icon={<ProfileOutlined />}
                                 >
-                                    <a href="#">
+                                    <a href="/register">
                                         注册
                                     </a>
                                 </Menu.Item>
                            </Col>
                            <Col span={3}>
-                                <Menu.Item key="5" classname="Menu_item">
-                                    <Link to="">
-                                        <Button type="primary" shape="round">
+                                <Menu.Item key="5" classname="Menu_item">                         
+                                        <Button type="primary" shape="round" style={{background:"orange"}} href="/release">
                                             发布项目
                                         </Button>
-                                    </Link>
                                 </Menu.Item>
                            </Col>
                         </Row>
