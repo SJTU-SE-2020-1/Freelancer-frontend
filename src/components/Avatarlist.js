@@ -12,8 +12,7 @@ import {
 } from 'antd'
 import { DownOutlined, UserOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
-// import "../css/link.css";
-const { Title, Paragraph, Text } = Typography
+
 const user = {
   name: 'xiaoming',
   avatar: ''
@@ -76,10 +75,10 @@ class Avatarlist extends React.Component {
               />
             </Badge>
           </Col>
-          <Col offset={2}>
+          <Col offset={1}>
             <b style={{ color: 'white' }}>{user.name}</b>
           </Col>
-          <Col offset={2}>
+          <Col offset={1}>
             <DownOutlined style={{ color: 'white' }} />
           </Col>
         </Row>
