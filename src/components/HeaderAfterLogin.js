@@ -63,7 +63,7 @@ class HeaderAfterLogin extends React.Component {
               </Button>
             </Menu.Item>
           </Col>
-          <Col span={3}>
+          <Col span={6}>
             <Menu.Item key='6' classname='Menu_item'>
               <Avatarlist />
             </Menu.Item>
