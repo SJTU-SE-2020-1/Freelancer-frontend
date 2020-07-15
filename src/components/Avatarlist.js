@@ -15,7 +15,8 @@ import { Link } from 'react-router-dom'
 
 const user = {
   name: 'xiaoming',
-  avatar: ''
+  avatar:
+    'http://b-ssl.duitang.com/uploads/item/201901/17/20190117230425_eofqv.thumb.700_0.jpg'
 }
 
 class Avatarlist extends React.Component {
@@ -45,7 +46,7 @@ class Avatarlist extends React.Component {
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item>
-        <Link to=''>查看资料</Link>
+        <Link to='/profile'>查看资料</Link>
       </Menu.Item>
       <Menu.Item>
         <Link to=''>用户设置</Link>
@@ -68,7 +69,14 @@ class Avatarlist extends React.Component {
               <Avatar
                 shape='square'
                 icon={
-                  user.avatar ? <img src={user.avatar} /> : <UserOutlined />
+                  user.avatar ? (
+                    <img
+                      src={user.avatar}
+                      //  width={'100%'} height={'100%'}
+                    />
+                  ) : (
+                    <UserOutlined />
+                  )
                 }
                 size='large'
                 style={{ margin: '2px' }}
