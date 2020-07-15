@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, Menu, Breadcrumb, Row } from 'antd'
+import { Layout, Menu, Breadcrumb, Row, Col, Button } from 'antd'
 import {
   UserOutlined,
   LaptopOutlined,
@@ -9,6 +9,8 @@ import '../css/profile.css'
 import { withRouter } from 'react-router-dom'
 import HeaderMenu from '../components/HeaderMenu'
 import HeaderAfterLogin from '../components/HeaderAfterLogin'
+import EmployerCard from '../components/employercard'
+import FreelancerCard from '../components/freelancercard'
 const { SubMenu } = Menu
 const { Header, Content, Footer, Sider } = Layout
 
@@ -16,7 +18,8 @@ class Profile extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      islogin: true
+      islogin: true,
+      if_employer: false
     }
   }
   render() {
@@ -43,12 +46,30 @@ class Profile extends React.Component {
             style={{ padding: '24px 0' }}
           >
             <Content style={{ padding: '0 12px', minHeight: 500 }}>
-              Content
+              <Row>
+                <Col offset={15}>
+                  <Button
+                    onClick={() => {
+                      let if_employer = !this.state.if_employer
+                      this.setState({ if_employer: if_employer })
+                    }}
+                  >
+                    {this.state.if_employer ? '查看威客' : '查看雇主'}
+                  </Button>
+                </Col>
+              </Row>
+              <div style={{ margin: '3%' }}>
+                {/* <EmployerCard /> */}
+                {/* <FreelancerCard /> */}
+                {this.state.if_employer ? <EmployerCard /> : <FreelancerCard />}
+              </div>
             </Content>
           </Layout>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-          Ant Design ©2018 Created by Ant UED
+          ©SJTU
+          <br />
+          Freelancer
         </Footer>
       </Layout>
     )
