@@ -13,7 +13,6 @@
     "@typescript-eslint/parser": "^2.10.0",
     "antd": "^4.4.2",
     "babel-eslint": "10.1.0",
-    "babel-jest": "^24.9.0",
     "babel-loader": "8.1.0",
     "babel-plugin-named-asset-import": "^0.3.6",
     "babel-preset-react-app": "^9.1.2",
@@ -32,7 +31,6 @@
     "fs-extra": "^8.1.0",
     "html-webpack-plugin": "4.0.0-beta.11",
     "identity-obj-proxy": "3.0.0",
-    "jest": "24.9.0",
     "jest-environment-jsdom-fourteen": "1.0.1",
     "jest-resolve": "24.9.0",
     "jest-watch-typeahead": "0.4.2",
@@ -66,7 +64,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "jest --colors --coverage"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -84,8 +82,13 @@
     ]
   },
   "devDependencies": {
+    "babel-jest": "^24.9.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^7.4.0",
-    "eslint-plugin-react": "^7.20.3"
+    "eslint-plugin-react": "^7.20.3",
+    "jest": "^24.9.0",
+    "redux-mock-store": "^1.5.4"
   },
   "jest": {
     "roots": [
