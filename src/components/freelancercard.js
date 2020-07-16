@@ -1,6 +1,13 @@
 import React from 'react'
-import { Card } from 'antd'
-
+import { Card, Row, Col, Rate, Tag, Tooltip, Statistic, Button } from 'antd'
+import {
+  SnippetsOutlined,
+  HighlightOutlined,
+  HeartOutlined,
+  EyeOutlined,
+  UserOutlined
+} from '@ant-design/icons'
+import UNknown from '../assets/unknown.png'
 const user_t = {
   name: 'xiaoming',
   money: 9000.95,

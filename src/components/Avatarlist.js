@@ -12,6 +12,7 @@ import {
 } from 'antd'
 import { DownOutlined, UserOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
+import * as UserSER from '../services/UserService'
 
 const user = {
   name: 'xiaoming',
@@ -23,9 +24,47 @@ class Avatarlist extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      messages: []
+      messages: [],
+      user: user
     }
   }
+  componentDidUpdate() {}
+  // componentDidMount() {
+  //   let auser = JSON.parse(localStorage.getItem('user'))
+  //   console.log('will: Home -> componentDidMount -> auser', auser)
+  //   let u_name = auser.name
+  //   console.log('will: Home -> componentDidMount -> u_name', u_name)
+  //   if (auser.phone == null) {
+  //     const callback = (data) => {
+  //       console.log('will: Home -> callback -> data', data)
+
+  //       if (data.status == null) {
+  //         //获取数据成功
+  //         let user = data
+
+  //         user['avatar'] =
+  //           'http://b-ssl.duitang.com/uploads/item/201901/17/20190117230425_eofqv.thumb.700_0.jpg'
+  //         localStorage.removeItem('user')
+  //         user['money'] = 20.0
+
+  //         localStorage.setItem('user', user)
+  //         console.log('will: Home -> callback -> user', user)
+  //         this.setState({ user: user })
+  //       }
+  //     }
+  //     let json = { name: u_name }
+
+  //     console.log('will: Home -> componentDidMount -> json', json)
+  //     UserSER.getuserInfo(json, callback)
+  //   } else this.setState({ user: auser })
+  // }
+  componentWillReceiveProps(nextprops) {
+    let user = nextprops.user
+    console.log('will: Avatarlist -> componentWillReceiveProps -> user', user)
+
+    this.setState({ user: user })
+  }
+
   handleButtonClick(e) {
     message.info('Click on left button.')
     console.log('click left button', e)

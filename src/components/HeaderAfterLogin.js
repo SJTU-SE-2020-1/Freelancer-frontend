@@ -38,22 +38,22 @@ class HeaderAfterLogin extends React.Component {
             </Link>
           </Col>
           <Col offset={1} span={2}>
-            <Menu.Item key='1' classname='Menu_item' icon={<SearchOutlined />}>
+            <Menu.Item key='1' className='Menu_item' icon={<SearchOutlined />}>
               <Link to={'howtowork'}>浏览</Link>
             </Menu.Item>
           </Col>
           <Col span={2}>
-            <Menu.Item key='2' classname='Menu_item' icon={<DesktopOutlined />}>
+            <Menu.Item key='2' className='Menu_item' icon={<DesktopOutlined />}>
               <Link to={'tasklist'}>我的项目</Link>
             </Menu.Item>
           </Col>
           <Col span={1}>
-            <Menu.Item key='3' classname='Menu_item' icon={<MessageOutlined />}>
+            <Menu.Item key='3' className='Menu_item' icon={<MessageOutlined />}>
               <a href='#'>Messages</a>
             </Menu.Item>
           </Col>
           <Col span={3} offset={5}>
-            <Menu.Item key='5' classname='Menu_item'>
+            <Menu.Item key='5' className='Menu_item'>
               <Button
                 type='primary'
                 style={{ background: 'orange' }}
@@ -64,8 +64,8 @@ class HeaderAfterLogin extends React.Component {
             </Menu.Item>
           </Col>
           <Col span={6}>
-            <Menu.Item key='6' classname='Menu_item'>
-              <Avatarlist />
+            <Menu.Item key='6' className='Menu_item'>
+              <Avatarlist user={this.props.user} />
             </Menu.Item>
           </Col>
         </Row>

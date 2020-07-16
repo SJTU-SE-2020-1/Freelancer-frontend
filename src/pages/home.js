@@ -12,20 +12,51 @@ import {
   EllipsisOutlined,
   SettingOutlined
 } from '@ant-design/icons'
+import * as UserSER from '../services/UserService'
 const { Header, Footer, Content } = Layout
 
-const user = {
-  name: 'xiaoming',
-  avatar: '',
-  money: 0.0
-}
+// const user = {
+//   name: 'xiaoming',
+//   avatar: '',
+//   money: 0.0
+// }
 
 class Home extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      islogin: true
+      // islogin: true,
+      user: { money: 0 }
     }
+  }
+  componentDidMount() {
+    let auser = JSON.parse(localStorage.getItem('user'))
+    console.log('will: Home -> componentDidMount -> auser', auser)
+    let u_name = auser.name
+    console.log('will: Home -> componentDidMount -> u_name', u_name)
+    if (auser.phone == null) {
+      const callback = (data) => {
+        console.log('will: Home -> callback -> data', data)
+
+        if (data.status == null) {
+          //获取数据成功
+          let user = data
+
+          user['avatar'] =
+            'http://b-ssl.duitang.com/uploads/item/201901/17/20190117230425_eofqv.thumb.700_0.jpg'
+          localStorage.removeItem('user')
+          user['money'] = 20.0
+
+          localStorage.setItem('user', user)
+          console.log('will: Home -> callback -> user', user)
+          this.setState({ user: user })
+        }
+      }
+      let json = { name: u_name }
+
+      console.log('will: Home -> componentDidMount -> json', json)
+      UserSER.getuserInfo(json, callback)
+    } else this.setState({ user: auser })
   }
 
   render() {
@@ -33,11 +64,14 @@ class Home extends React.Component {
       <div>
         <Layout>
           <Header style={{ margin: ' 0px', padding: ' 0px' }}>
-            {this.state.islogin ? (
-              <HeaderAfterLogin style={{ width: '100%' }} />
-            ) : (
-              <HeaderMenu style={{ width: '100%' }} />
-            )}
+            {/* {this.state.islogin ? ( */}
+            <HeaderAfterLogin
+              style={{ width: '100%' }}
+              user={this.state.user}
+            />
+            {/* ) : ( */}
+            {/* <HeaderMenu style={{ width: '100%' }} /> */}
+            {/* )} */}
           </Header>
           <Content
             className={'homecontent'}
@@ -91,11 +125,11 @@ class Home extends React.Component {
                         </span>
                         <br />
                         <b style={{ color: 'white', fontSize: '22px' }}>
-                          {'    ' + user.name}
+                          {'    ' + this.state.user.name}
                         </b>
                         <br />
                         <span style={{ color: 'white', fontSize: '22px' }}>
-                          {'    @' + user.name}
+                          {'    @' + this.state.user.name}
                         </span>
                         <b
                           style={{
@@ -135,7 +169,9 @@ class Home extends React.Component {
                         </a>
                         <br />
                         <br />
-                        <p>{'￥ ' + user.money.toFixed(2) + ' 元'}</p>
+                        <p>
+                          {'￥ ' + this.state.user.money.toFixed(2) + ' 元'}
+                        </p>
                       </div>
                     </div>
                   }
