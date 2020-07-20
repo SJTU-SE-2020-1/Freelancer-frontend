@@ -2,26 +2,24 @@ import React from 'react'
 import { Form, Input, Button, Checkbox } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
-// import * as UserSER from '../services/UserService';
+import * as UserSER from '../services/UserService'
 
 class Loginform extends React.Component {
   onSubmit = (values) => {
-    console.log(values)
-    debugger
     console.log('Received values of form: ', values)
-    //  UserSER.login(values);
+    UserSER.login(values)
   }
   render() {
     //  debugger;
     return (
       <Form
         name='normal_login'
-        initialValues={{ remember: true }}
+        // initialValues={{ remember: true }}
         onFinish={this.onSubmit}
       >
         <Form.Item
           label='用户名'
-          name='username'
+          name='name'
           rules={[{ required: true, message: '请输入你的用户名！' }]}
         >
           <Input

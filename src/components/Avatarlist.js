@@ -3,8 +3,8 @@ import {
   Menu,
   Dropdown,
   Avatar,
-  Typography,
-  Button,
+  // Typography,
+  // Button,
   message,
   Row,
   Col,
@@ -12,20 +12,27 @@ import {
 } from 'antd'
 import { DownOutlined, UserOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
+import * as UserSER from '../services/UserService'
 
 const user = {
   name: 'xiaoming',
   avatar:
-    'http://b-ssl.duitang.com/uploads/item/201901/17/20190117230425_eofqv.thumb.700_0.jpg'
+    'https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1068485212,3292662520&fm=111&gp=0.jpg'
 }
 
 class Avatarlist extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      messages: []
+      messages: [],
+      user: user
     }
   }
+  componentDidMount() {
+    let auser = JSON.parse(localStorage.getItem('user'))
+    this.setState({ user: auser })
+  }
+
   handleButtonClick(e) {
     message.info('Click on left button.')
     console.log('click left button', e)
@@ -69,14 +76,22 @@ class Avatarlist extends React.Component {
               <Avatar
                 shape='square'
                 icon={
-                  user.avatar ? (
+                  this.state.user.avatar ? (
                     <img
-                      src={user.avatar}
+                      src={this.state.user.avatar}
                       //  width={'100%'} height={'100%'}
                     />
                   ) : (
                     <UserOutlined />
                   )
+                  // this.props.user.avatar ? (
+                  //   <img
+                  //     src={this.props.user.avatar}
+                  //     //  width={'100%'} height={'100%'}
+                  //   />
+                  // ) : (
+                  //   <UserOutlined />
+                  // )
                 }
                 size='large'
                 style={{ margin: '2px' }}
@@ -84,7 +99,10 @@ class Avatarlist extends React.Component {
             </Badge>
           </Col>
           <Col offset={1}>
-            <b style={{ color: 'white' }}>{user.name}</b>
+            <b style={{ color: 'white' }}>
+              {this.state.user.name}
+              {/* {this.props.user.name} */}
+            </b>
           </Col>
           <Col offset={1}>
             <DownOutlined style={{ color: 'white' }} />

@@ -22,16 +22,20 @@ class Profile extends React.Component {
       if_employer: false
     }
   }
+
+  componentDidMount() {
+    let user = JSON.parse(localStorage.getItem('user'))
+    this.setState({ user: user })
+  }
   render() {
     return (
       <Layout>
         <Header className='header' style={{ margin: ' 0px', padding: ' 0px' }}>
           <div>
-            {this.state.islogin ? (
-              <HeaderAfterLogin style={{ width: '100%' }} />
-            ) : (
-              <HeaderMenu style={{ width: '100%' }} />
-            )}
+            <HeaderAfterLogin
+              style={{ width: '100%' }}
+              user={this.state.user}
+            />
           </div>
         </Header>
         <Content style={{ padding: '0 50px' }}>
@@ -47,8 +51,9 @@ class Profile extends React.Component {
           >
             <Content style={{ padding: '0 12px', minHeight: 500 }}>
               <Row>
-                <Col offset={15}>
+                <Col offset={18}>
                   <Button
+                    style={{ background: 'lightblue' }}
                     onClick={() => {
                       let if_employer = !this.state.if_employer
                       this.setState({ if_employer: if_employer })

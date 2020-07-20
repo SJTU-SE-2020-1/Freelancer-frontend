@@ -27,6 +27,14 @@ class EmployerCard extends React.Component {
       if_edit: false
     }
   }
+
+  componentDidMount() {
+    let user = JSON.parse(localStorage.getItem('user'))
+    user.grade = (Math.random() * 5).toFixed(1)
+    user.views = Math.ceil(Math.random() * 100)
+    user.money = Math.random() * 10000
+    this.setState({ user: user })
+  }
   render() {
     return (
       <div>
@@ -36,7 +44,7 @@ class EmployerCard extends React.Component {
             title={
               <div>
                 <b>{this.state.user.name}</b>@{this.state.user.name}
-                #EmployerCard
+                【雇主】
               </div>
             }
             extra={
@@ -106,7 +114,7 @@ class EmployerCard extends React.Component {
                 </Row>
                 <br />
                 <Row>
-                  <Col span={8}>
+                  <Col>
                     <Statistic
                       title='已发布工作'
                       value={12}
@@ -115,7 +123,7 @@ class EmployerCard extends React.Component {
                       suffix='件'
                     />
                   </Col>
-                  <Col offset={3}>
+                  <Col offset={4}>
                     <Statistic
                       title='未接单工作'
                       value={2}
@@ -124,7 +132,7 @@ class EmployerCard extends React.Component {
                       suffix='件'
                     />
                   </Col>
-                  <Col offset={3}>
+                  <Col offset={4}>
                     <Statistic
                       title='工作进行中'
                       value={2}
