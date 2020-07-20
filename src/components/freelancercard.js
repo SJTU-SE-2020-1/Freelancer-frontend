@@ -1,6 +1,13 @@
 import React from 'react'
-import { Card } from 'antd'
-
+import { Card, Row, Col, Rate, Tag, Tooltip, Statistic, Button } from 'antd'
+import {
+  SnippetsOutlined,
+  HighlightOutlined,
+  HeartOutlined,
+  EyeOutlined,
+  UserOutlined
+} from '@ant-design/icons'
+import UNknown from '../assets/unknown.png'
 const user_t = {
   name: 'xiaoming',
   money: 9000.95,
@@ -20,6 +27,13 @@ class FreelancerCard extends React.Component {
       if_edit: false
     }
   }
+  componentDidMount() {
+    let user = JSON.parse(localStorage.getItem('user'))
+    user.grade = (Math.random() * 5).toFixed(1)
+    user.views = Math.ceil(Math.random() * 100)
+    user.money = Math.random() * 10000
+    this.setState({ user: user })
+  }
   render() {
     return (
       <div>
@@ -29,7 +43,7 @@ class FreelancerCard extends React.Component {
             title={
               <div>
                 <b>{this.state.user.name}</b>@{this.state.user.name}
-                #EmployerCard
+                【威客】
               </div>
             }
             extra={

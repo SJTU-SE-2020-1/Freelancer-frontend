@@ -19,10 +19,11 @@ import profile from './pages/profile'
 class BasicRoute extends React.Component {
   render() {
     return (
-      <Router history={history}>
+      <Router>
+        {/* <ErrorBoundary> */}
         <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/login' component={Login} />
+          <PersonRouter exact path='/' component={Home} />
+          <LoginRouter exact path='/login' component={Login} />
           <Route exact path='/profile' component={profile} />
           <Route exact path='/release' component={ReleaseWork} />
           <Route exact path='/tasklist' component={TaskList} />
@@ -31,6 +32,7 @@ class BasicRoute extends React.Component {
           <Route exact path='/register' component={Register} />
           <Redirect from='/*' to='/' />
         </Switch>
+        {/* </ErrorBoundary> */}
       </Router>
     )
   }
