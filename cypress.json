@@ -1,0 +1,12 @@
+{
+  "projectId": "pza7eq",
+  "fixturesFolder": "src/test/e2e/fixtures",
+  "integrationFolder": "src/test/e2e/specs",
+  "pluginsFile": "src/test/e2e/plugins",
+  "screenshotsFolder": "src/test/e2e/screenshots",
+  "supportFile": "src/test/e2e/support",
+  "videosFolder": "src/test/e2e/videos",
+  "baseUrl": "http://localhost:3000",
+  "viewportHeight": 768,
+  "viewportWidth": 1366
+}
