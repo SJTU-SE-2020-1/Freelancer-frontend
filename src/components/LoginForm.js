@@ -6,8 +6,6 @@ import * as UserSER from '../services/UserService'
 
 class Loginform extends React.Component {
   onSubmit = (values) => {
-    console.log(values)
-    debugger
     console.log('Received values of form: ', values)
     UserSER.login(values)
   }
@@ -16,7 +14,7 @@ class Loginform extends React.Component {
     return (
       <Form
         name='normal_login'
-        initialValues={{ remember: true }}
+        // initialValues={{ remember: true }}
         onFinish={this.onSubmit}
       >
         <Form.Item

@@ -9,7 +9,9 @@ export const login = (data) => {
   const callback = (data) => {
     // debugger
     if (data.status >= 0 && data.status != 500) {
+      console.log('will: callback -> data.data', data.data)
       localStorage.setItem('user', JSON.stringify(data.data))
+
       history.push('/')
       window.location = '/'
       message.success(data.msg)
@@ -25,7 +27,7 @@ export const login = (data) => {
 }
 
 export const getuserInfo = (json, callback) => {
-  debugger
+  // debugger
   console.log('will: getuserInfo -> json', json)
   const url = `${apiUrl}/getUserInfo`
   postRequest(url, json, callback)

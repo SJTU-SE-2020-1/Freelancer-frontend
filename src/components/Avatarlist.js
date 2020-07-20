@@ -3,8 +3,8 @@ import {
   Menu,
   Dropdown,
   Avatar,
-  Typography,
-  Button,
+  // Typography,
+  // Button,
   message,
   Row,
   Col,
@@ -17,7 +17,7 @@ import * as UserSER from '../services/UserService'
 const user = {
   name: 'xiaoming',
   avatar:
-    'http://b-ssl.duitang.com/uploads/item/201901/17/20190117230425_eofqv.thumb.700_0.jpg'
+    'https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1068485212,3292662520&fm=111&gp=0.jpg'
 }
 
 class Avatarlist extends React.Component {
@@ -28,41 +28,9 @@ class Avatarlist extends React.Component {
       user: user
     }
   }
-  componentDidUpdate() {}
-  // componentDidMount() {
-  //   let auser = JSON.parse(localStorage.getItem('user'))
-  //   console.log('will: Home -> componentDidMount -> auser', auser)
-  //   let u_name = auser.name
-  //   console.log('will: Home -> componentDidMount -> u_name', u_name)
-  //   if (auser.phone == null) {
-  //     const callback = (data) => {
-  //       console.log('will: Home -> callback -> data', data)
-
-  //       if (data.status == null) {
-  //         //获取数据成功
-  //         let user = data
-
-  //         user['avatar'] =
-  //           'http://b-ssl.duitang.com/uploads/item/201901/17/20190117230425_eofqv.thumb.700_0.jpg'
-  //         localStorage.removeItem('user')
-  //         user['money'] = 20.0
-
-  //         localStorage.setItem('user', user)
-  //         console.log('will: Home -> callback -> user', user)
-  //         this.setState({ user: user })
-  //       }
-  //     }
-  //     let json = { name: u_name }
-
-  //     console.log('will: Home -> componentDidMount -> json', json)
-  //     UserSER.getuserInfo(json, callback)
-  //   } else this.setState({ user: auser })
-  // }
-  componentWillReceiveProps(nextprops) {
-    let user = nextprops.user
-    console.log('will: Avatarlist -> componentWillReceiveProps -> user', user)
-
-    this.setState({ user: user })
+  componentDidMount() {
+    let auser = JSON.parse(localStorage.getItem('user'))
+    this.setState({ user: auser })
   }
 
   handleButtonClick(e) {
@@ -108,14 +76,22 @@ class Avatarlist extends React.Component {
               <Avatar
                 shape='square'
                 icon={
-                  user.avatar ? (
+                  this.state.user.avatar ? (
                     <img
-                      src={user.avatar}
+                      src={this.state.user.avatar}
                       //  width={'100%'} height={'100%'}
                     />
                   ) : (
                     <UserOutlined />
                   )
+                  // this.props.user.avatar ? (
+                  //   <img
+                  //     src={this.props.user.avatar}
+                  //     //  width={'100%'} height={'100%'}
+                  //   />
+                  // ) : (
+                  //   <UserOutlined />
+                  // )
                 }
                 size='large'
                 style={{ margin: '2px' }}
@@ -123,7 +99,10 @@ class Avatarlist extends React.Component {
             </Badge>
           </Col>
           <Col offset={1}>
-            <b style={{ color: 'white' }}>{user.name}</b>
+            <b style={{ color: 'white' }}>
+              {this.state.user.name}
+              {/* {this.props.user.name} */}
+            </b>
           </Col>
           <Col offset={1}>
             <DownOutlined style={{ color: 'white' }} />

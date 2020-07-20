@@ -13,9 +13,8 @@ class PersonRouter extends React.Component {
   }
 
   checkAuth = (data) => {
-    // debugger;
-    console.log(data)
-    if (data.status >= 0) {
+    console.log('will: PersonRouter -> checkAuth -> data', data)
+    if (data.status == 0) {
       this.setState({ haveAuth: true, appliedAuth: true })
     } else {
       message.error(data.msg)

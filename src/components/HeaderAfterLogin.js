@@ -65,7 +65,9 @@ class HeaderAfterLogin extends React.Component {
           </Col>
           <Col span={6}>
             <Menu.Item key='6' className='Menu_item'>
-              <Avatarlist user={this.props.user} />
+              <Avatarlist
+              // user={this.props.user}
+              />
             </Menu.Item>
           </Col>
         </Row>
