@@ -44,7 +44,7 @@ class HeaderAfterLogin extends React.Component {
           </Col>
           <Col span={2}>
             <Menu.Item key='2' className='Menu_item' icon={<DesktopOutlined />}>
-              <Link to={'tasklist'}>我的项目</Link>
+              <Link to={'MyWork'}>我的项目</Link>
             </Menu.Item>
           </Col>
           <Col span={1}>
