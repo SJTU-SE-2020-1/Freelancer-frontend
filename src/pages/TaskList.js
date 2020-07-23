@@ -1,5 +1,5 @@
 import React from 'react'
-import { List, Layout, Row, Col, Pagination } from 'antd'
+import { List, Layout, Row, Col, Pagination, Input, Card } from 'antd'
 import { Task } from '../components/Task'
 import { withRouter } from 'react-router-dom'
 import HeaderAfterLogin from '../components/HeaderAfterLogin'
@@ -7,7 +7,7 @@ import HeaderMenu from '../components/HeaderMenu'
 
 import * as WorkSER from '../services/WorkService'
 const { Header, Footer, Content } = Layout
-
+const { Search } = Input
 class TaskList extends React.Component {
   constructor(props) {
     super(props)
@@ -72,6 +72,21 @@ class TaskList extends React.Component {
           <br />
           <Row justify='center'>
             <Col span={18}>
+              <Search
+                placeholder='input search text'
+                onSearch={(value) => console.log(value)}
+                enterButton
+              />
+            </Col>
+          </Row>
+          <br />
+          <Row justify='center'>
+            <Col span={5}>
+              <Card title='筛选项'>
+                <b>预算</b>
+              </Card>
+            </Col>
+            <Col offset={1} span={14}>
               <List
                 // grid={{ gutter: 10, column: 4 }}
                 itemLayout='vertical'
@@ -84,7 +99,8 @@ class TaskList extends React.Component {
               />
             </Col>
           </Row>
-          <Footer>
+
+          <Footer style={{ float: 'right', marginRight: '5%' }}>
             <Pagination
               showSizeChanger
               showQuickJumper

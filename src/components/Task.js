@@ -21,7 +21,7 @@ export class Task extends React.Component {
 
   GetDescription = () => {
     let s = this.state.workinfo.description
-    console.log('will: Task -> GetDescription -> s', s)
+    // console.log('will: Task -> GetDescription -> s', s)
     if (s != null) {
       let s_list = s.split('技能：')
       if (s_list.length < 2) {
