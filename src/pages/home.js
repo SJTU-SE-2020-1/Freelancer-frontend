@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, Col, Card, Row, Button, Divider } from 'antd'
+import { Layout, Col, Card, Row, Button, Divider, message } from 'antd'
 import { withRouter, Link } from 'react-router-dom'
 import '../css/home.css'
 import HeaderAfterLogin from '../components/HeaderAfterLogin'
@@ -12,6 +12,7 @@ import {
   SettingOutlined
 } from '@ant-design/icons'
 import * as UserSER from '../services/UserService'
+import HeaderAdministrator from '../components/HeaderAdministrator'
 const { Header, Footer, Content } = Layout
 
 class Home extends React.Component {
@@ -21,7 +22,7 @@ class Home extends React.Component {
       user: {}
     }
   }
-  componentDidMount() {
+  componentWillMount() {
     let u = JSON.parse(localStorage.getItem('user'))
     console.log('will: Home -> componentDidMount -> u', u)
     if (u == null) {
@@ -32,21 +33,20 @@ class Home extends React.Component {
       }
       this.setState({ user: auser })
     } else {
-      // let auser = JSON.parse(u)
       console.log('will: Home -> componentDidMount -> user', u)
       let u_name = u.name
       console.log('will: Home -> componentDidMount -> u_name', u_name)
       if (u.phone == null) {
         const callback = (data) => {
-          console.log('will: Home -> callback -> data', data)
-
           if (data.status == null) {
             //获取数据成功
             let user = data
             delete user.password
-            user['avatar'] =
-              'http://t8.baidu.com/it/u=3571592872,3353494284&fm=79&app=86&size=h300&n=0&g=4n&f=jpeg?sec=1595389843&t=d4524c4d137755de6e12cbe12545d4f0'
-            // 'https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1068485212,3292662520&fm=111&gp=0.jpg'
+            console.log('will: Home -> callback -> user', user)
+            if (user.avatar == null) {
+              user['avatar'] =
+                'http://t8.baidu.com/it/u=3571592872,3353494284&fm=79&app=86&size=h300&n=0&g=4n&f=jpeg?sec=1595389843&t=d4524c4d137755de6e12cbe12545d4f0'
+            }
             localStorage.removeItem('user')
             user['money'] = 20.0
             localStorage.setItem('user', JSON.stringify(user))
@@ -66,7 +66,17 @@ class Home extends React.Component {
     return (
       <Layout>
         <Header style={{ margin: ' 0px', padding: ' 0px' }}>
-          <HeaderAfterLogin style={{ width: '100%' }} user={this.state.user} />
+          {this.state.user.type == null ? null : this.state.user.type == 0 ? (
+            <HeaderAfterLogin
+              style={{ width: '100%' }}
+              user={this.state.user}
+            />
+          ) : (
+            <HeaderAdministrator
+              style={{ width: '100%' }}
+              user={this.state.user}
+            />
+          )}
         </Header>
         <Content
           className={'homecontent'}

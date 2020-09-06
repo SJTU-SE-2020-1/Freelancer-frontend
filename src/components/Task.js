@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, Tag, Row } from 'antd'
 import '../css/Task.css'
+import { Link } from 'react-router-dom'
 
 export class Task extends React.Component {
   constructor(props) {
@@ -10,12 +11,11 @@ export class Task extends React.Component {
     }
   }
   componentDidMount() {
-    // this.props.info
-    // console.log(
-    //   'will: Task -> componentDidMount -> this.props.info',
-    //   this.props.info
-    // )
-    // debugger
+    console.log(
+      'will: Task -> componentDidMount -> this.props.info',
+      this.props.info
+    )
+
     this.setState({ workinfo: this.props.info })
   }
 
@@ -53,9 +53,26 @@ export class Task extends React.Component {
   render() {
     return (
       <Card
-        title={this.state.workinfo.title}
+        title={
+          <div>
+            <b>{this.state.workinfo.title}</b>
+            {this.state.workinfo.paymentHigher ? (
+              <div style={{ fontSize: '12px' }}>
+                {'￥' +
+                  this.state.workinfo.paymentLower.toFixed(2) +
+                  '-' +
+                  this.state.workinfo.paymentHigher.toFixed(2)}
+              </div>
+            ) : null}
+          </div>
+        }
+        hoverable
         class='Task_Blower'
-        extra={<a href='#'>More</a>}
+        extra={
+          <Link to={{ pathname: '/taskdetail/' + this.state.workinfo.w_id }}>
+            More
+          </Link>
+        }
       >
         {this.GetDescription()}
       </Card>

@@ -29,6 +29,16 @@ export const PostWork = (json, callback) => {
 }
 
 export const ApplyWork = (json, callback) => {
-  const url = `${apiUrl}/Apply`
+  const url = `${apiUrl}/applyWork`
+  postRequest(url, json, callback)
+}
+
+export const cancelApply = (json, callback) => {
+  const url = `${apiUrl}/cancelApply`
+  postRequest(url, json, callback)
+}
+
+export const changeStatus = (json, callback) => {
+  const url = `${apiUrl}/changeWorkStatus`
   postRequest(url, json, callback)
 }

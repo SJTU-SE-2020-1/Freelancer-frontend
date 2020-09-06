@@ -10,7 +10,8 @@ export const login = (data) => {
     // debugger
     if (data.status >= 0 && data.status != 500) {
       console.log('will: callback -> data.data', data.data)
-      localStorage.setItem('user', JSON.stringify(data.data))
+      let user = data.data
+      localStorage.setItem('user', JSON.stringify(user))
 
       history.push('/')
       window.location = '/'
@@ -39,11 +40,11 @@ export const logout = () => {
   const callback = (data) => {
     if (data.status == 0) {
       localStorage.removeItem('user')
-      // history.push("/login");
-      window.location = '/login'
-      message.success(data.info)
+      history.push('/unlogin')
+      window.location = '/unlogin'
+      message.success(data.msg)
     } else {
-      message.error(data.info)
+      message.error(data.msg)
     }
   }
   postRequest(url, {}, callback)
@@ -115,10 +116,15 @@ export const upLoadInfo = (data) => {
   postRequest(url, data, callback)
 }
 export const getUsers = (page, callback) => {
-  const url = `${apiUrl}/getAllUsers`
+  const url = `${apiUrl}/getUsers`
   postRequest(url, page, callback)
 }
 export const changeType = (json, callback) => {
-  const url = `${apiUrl}//changeType`
+  const url = `${apiUrl}/changeUserType`
+  postRequest(url, json, callback)
+}
+
+export const changeStatus = (json, callback) => {
+  const url = `${apiUrl}/changeUserStatus`
   postRequest(url, json, callback)
 }

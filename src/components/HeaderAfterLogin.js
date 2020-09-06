@@ -39,7 +39,7 @@ class HeaderAfterLogin extends React.Component {
           </Col>
           <Col offset={1} span={2}>
             <Menu.Item key='1' className='Menu_item' icon={<SearchOutlined />}>
-              <Link to={'howtowork'}>浏览</Link>
+              <Link to={'tasklist'}>浏览</Link>
             </Menu.Item>
           </Col>
           <Col span={2}>
@@ -65,9 +65,7 @@ class HeaderAfterLogin extends React.Component {
           </Col>
           <Col span={6}>
             <Menu.Item key='6' className='Menu_item'>
-              <Avatarlist
-              // user={this.props.user}
-              />
+              <Avatarlist user={this.props.user} />
             </Menu.Item>
           </Col>
         </Row>
