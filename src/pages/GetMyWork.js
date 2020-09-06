@@ -21,6 +21,7 @@ import HeaderMenu from '../components/HeaderMenu'
 import HeaderAfterLogin from '../components/HeaderAfterLogin'
 import EmployerCard from '../components/employercard'
 import FreelancerCard from '../components/freelancercard'
+import PostedWork from '../components/PostedWorkList'
 const { SubMenu } = Menu
 const { Title } = Typography
 const { Header, Content, Footer, Sider } = Layout
@@ -31,7 +32,8 @@ class MyWork extends React.Component {
     this.state = {
       if_employer: false,
       E_current: '2',
-      F_current: '5'
+      F_current: '5',
+      user: {}
     }
   }
 
@@ -122,7 +124,11 @@ class MyWork extends React.Component {
               )}
 
               <div style={{ margin: '3%' }}>
-                {/* {this.state.if_employer ? <EmployerCard /> : <FreelancerCard />} */}
+                {this.state.if_employer ? (
+                  <PostedWork />
+                ) : this.state.F_current == 5 ? (
+                  <PostedWork />
+                ) : null}
               </div>
             </Content>
           </Layout>

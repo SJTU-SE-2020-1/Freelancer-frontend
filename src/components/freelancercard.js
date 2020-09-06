@@ -8,6 +8,7 @@ import {
   UserOutlined
 } from '@ant-design/icons'
 import UNknown from '../assets/unknown.png'
+import PersonInfo from './EditPersonalInfo'
 const user_t = {
   name: 'xiaoming',
   money: 9000.95,
@@ -37,7 +38,9 @@ class FreelancerCard extends React.Component {
   render() {
     return (
       <div>
-        {this.state.if_edit ? null : (
+        {this.state.if_edit ? (
+          <PersonInfo user={this.state.user} />
+        ) : (
           <Card
             hoverable={true}
             title={

@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom'
 import * as UserSER from './services/UserService'
 import { message } from 'antd'
 
-class PersonRouter extends React.Component {
+class AdminRouter extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -13,9 +13,13 @@ class PersonRouter extends React.Component {
   }
 
   checkAuth = (data) => {
-    console.log('will: PersonRouter -> checkAuth -> data', data)
     if (data.status == 0) {
-      this.setState({ haveAuth: true, appliedAuth: true })
+      let userType = data.data.userType[0].authority
+      if (userType == 'ROLE_ADMIN') {
+        this.setState({ haveAuth: true, appliedAuth: true })
+      } else {
+        this.setState({ haveAuth: false, appliedAuth: true })
+      }
     } else {
       console.log('will: PersonRouter -> checkAuth -> data.msg', data.msg)
       localStorage.removeItem('user')
@@ -24,17 +28,6 @@ class PersonRouter extends React.Component {
   }
 
   componentDidMount() {
-    let currentpath = this.props.location
-    let if_tologin = false
-    if (currentpath.pathname == '/release') {
-      if_tologin = true
-    }
-    console.log(
-      'will: PersonRouter -> componentDidMount -> if_tologin',
-      if_tologin
-    )
-    this.setState({ if_tologin })
-
     UserSER.checkSession(this.checkAuth)
   }
 
@@ -58,17 +51,10 @@ class PersonRouter extends React.Component {
         render={(props) =>
           this.state.haveAuth ? (
             <Component {...props} />
-          ) : this.state.if_tologin ? (
-            <Redirect
-              to={{
-                pathname: '/login',
-                state: { from: props.location }
-              }}
-            />
           ) : (
             <Redirect
               to={{
-                pathname: '/unlogin',
+                pathname: '/',
                 state: { from: props.location }
               }}
             />
@@ -79,4 +65,4 @@ class PersonRouter extends React.Component {
   }
 }
 
-export default PersonRouter
+export default AdminRouter

@@ -48,9 +48,14 @@ class Profile extends React.Component {
             className='site-layout-background'
             style={{ padding: '24px 0' }}
           >
-            <Content style={{ padding: '0 12px', minHeight: 500 }}>
+            <Content
+              style={{
+                padding: '0 12px',
+                minHeight: 500
+              }}
+            >
               <Row>
-                <Col offset={18}>
+                <Col offset={20}>
                   <Button
                     style={{ background: 'lightblue' }}
                     onClick={() => {
@@ -63,8 +68,6 @@ class Profile extends React.Component {
                 </Col>
               </Row>
               <div style={{ margin: '3%' }}>
-                {/* <EmployerCard /> */}
-                {/* <FreelancerCard /> */}
                 {this.state.if_employer ? <EmployerCard /> : <FreelancerCard />}
               </div>
             </Content>

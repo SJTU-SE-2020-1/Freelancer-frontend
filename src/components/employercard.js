@@ -8,6 +8,7 @@ import {
   UserOutlined
 } from '@ant-design/icons'
 import UNknown from '../assets/unknown.png'
+import PersonInfo from './EditPersonalInfo'
 const user_t = {
   name: 'xiaoming',
   money: 9000.95,
@@ -38,7 +39,9 @@ class EmployerCard extends React.Component {
   render() {
     return (
       <div>
-        {this.state.if_edit ? null : (
+        {this.state.if_edit ? (
+          <PersonInfo user={this.state.user} />
+        ) : (
           <Card
             hoverable={true}
             title={
@@ -84,7 +87,7 @@ class EmployerCard extends React.Component {
                     <Tag color='yellow'>{this.state.grade}</Tag>
                     <Tooltip
                       placement='topLeft'
-                      title={'所有已完成项目的平均评分'}
+                      title={'雇主评分'}
                       arrowPointAtCenter
                     >
                       <Rate

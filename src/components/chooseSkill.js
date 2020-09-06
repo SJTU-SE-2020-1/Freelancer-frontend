@@ -1,11 +1,12 @@
 import React from 'react'
-import { Modal, Button, Input, Row, Col } from 'antd'
+import { Modal, Button, Input, Row, Col, message, Checkbox, Tag } from 'antd'
 import {
   DesktopOutlined,
   EllipsisOutlined,
   HighlightOutlined,
   RightOutlined
 } from '@ant-design/icons'
+import * as SKillSer from '../services/SkillService'
 import { List } from 'antd/lib/form/Form'
 import Title from 'antd/lib/skeleton/Title'
 const { Search } = Input
@@ -45,17 +46,18 @@ class ChooseSkill extends React.Component {
       category: category_t,
       selectedkey: -1,
       skillnum: 0, //已选skill数
-      selectedskills: [], //存skill_id
+      selectedskills: [],
       skills: [], //包含skill_id以及skill name
-      visible: false
+      visible: false,
+      keyword: ''
     }
   }
   componentDidMount() {
-    debugger
+    // debugger
   }
 
   showModal = () => {
-    debugger
+    // debugger
     console.log('will: ChooseSkill -> constructor -> category_t', category_t)
     this.setState({
       visible: true
@@ -64,16 +66,63 @@ class ChooseSkill extends React.Component {
 
   onSearch = (value) => {
     console.log('will: ChooseSkill -> onSearch -> value', value)
+    this.setState({ keyword: value })
+    if (this.state.selectedkey == -1) {
+      message.warning('请选择一个技能分类')
+    }
   }
 
   onOK = () => {
     console.log('will: chooseSkill -> onOK')
     this.setState({ visible: false })
+    this.props.selectSkills(this.state.selectedskills)
   }
   onClickCategory = (key) => {
     console.log('will: ChooseSkill -> onClickCategory -> key', key)
     this.setState({ selectedkey: key })
+    let json = { category: key }
+    const callback = (data) => {
+      console.log('will: ChooseSkill -> callback -> data', data)
+      if (data.status == null) {
+        this.setState({ skills: data })
+      } else message.error('获取技能失败')
+    }
+    SKillSer.getSkillbyCategory(json, callback)
     //后端取数据显示
+  }
+
+  chooseSkill = (checkedValues) => {
+    console.log(
+      'will: ChooseSkill -> chooseSkill -> checkedValues',
+      checkedValues
+    )
+    this.setState({
+      selectedskills: checkedValues,
+      skillnum: checkedValues.length
+    })
+  }
+
+  renderSkills = () => {
+    let skills = this.state.skills
+    let result = []
+    let keyword = this.state.keyword
+    for (let i = 0; i < skills.length; i++) {
+      let skillname = skills[i].skillName
+      if (skillname && skillname.indexOf(keyword) != -1) {
+        result.push(
+          <Col span={12}>
+            <Checkbox value={skills[i].skillName + '&' + skills[i].s_id}>
+              {skills[i].skillName}
+            </Checkbox>
+          </Col>
+        )
+      }
+    }
+    return (
+      <Checkbox.Group style={{ width: '100%' }} onChange={this.chooseSkill}>
+        <Row>{result}</Row>
+      </Checkbox.Group>
+    )
   }
 
   categoryList = () => {
@@ -115,11 +164,15 @@ class ChooseSkill extends React.Component {
       )
     }
   }
-  showskills = () => {
-    for (let i = 0; i < this.state.skills.length; i++) {}
-  }
 
-  skilltags() {}
+  skilltags = () => {
+    let choosenSkills = this.state.selectedskills
+    let result = []
+    for (let i = 0; i < choosenSkills.length; i++) {
+      result.push(<Tag color='success'>{choosenSkills[i].split('&')[0]}</Tag>)
+    }
+    return result
+  }
 
   render() {
     return (
@@ -163,10 +216,11 @@ class ChooseSkill extends React.Component {
                   ? this.state.category[this.state.selectedkey - 1].name
                   : '未选择分类'}
               </b>
-              {}
+              {this.renderSkills()}
             </Col>
             <Col span={8}>
               <b>{this.state.skillnum + '已选技能'}</b>
+              <br />
               {this.state.skillnum == 0 ? (
                 <p>至少选择一项技能帮助我们向您推荐定制的工作。</p>
               ) : (

@@ -16,6 +16,11 @@ import PersonRouter from './PersonRouter'
 import { history } from './util/history'
 import profile from './pages/profile'
 import MyWork from './pages/GetMyWork'
+import initialpage from './pages/initialpage'
+import AdminRouter from './AdminRouter'
+import manageUser from './pages/manageUser'
+import manageTask from './pages/manageTask'
+import ApplyWork from './pages/ApplyWork'
 
 class BasicRoute extends React.Component {
   render() {
@@ -26,10 +31,14 @@ class BasicRoute extends React.Component {
           <PersonRouter exact path='/' component={Home} />
           <LoginRouter exact path='/login' component={Login} />
           <PersonRouter exact path='/MyWork' component={MyWork} />
+          <Route exact path='/unlogin' component={initialpage} />
           <Route exact path='/profile' component={profile} />
-          <Route exact path='/release' component={ReleaseWork} />
+          <PersonRouter exact path='/release' component={ReleaseWork} />
           <Route exact path='/tasklist' component={TaskList} />
           <Route path='/taskdetail/:id' component={TaskDetail} />
+          <Route path='/applywork/:id' component={ApplyWork} />
+          <AdminRouter path='/manageUser' component={manageUser} />
+          <AdminRouter path='/manageTask' component={manageTask} />
           {/* <LoginRouter exact path="/login" component={Login}/> */}
           <Route exact path='/register' component={Register} />
           <Redirect from='/*' to='/' />
