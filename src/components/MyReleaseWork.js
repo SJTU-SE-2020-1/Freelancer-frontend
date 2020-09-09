@@ -19,7 +19,7 @@ import * as WorkSER from '../services/WorkService'
 
 const { Search } = Input
 
-class PostedWork extends React.Component {
+class MyReleaseWork extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -32,7 +32,7 @@ class PostedWork extends React.Component {
       paymentHigher: 10000,
       keyword: ''
     }
-    this.handleCancle = this.handleCancle.bind(this)
+    this.handleDelete = this.handleDelete.bind()
   }
   callback = (data) => {
     console.log('will: PostedWork -> callback -> data', data)
@@ -44,25 +44,25 @@ class PostedWork extends React.Component {
       this.setState({ worklist: data })
     }
   }
-  handleCancle = (w_id) => {
+  handleDelete = (w_id) => {
     console.log('will: MyReleaseWork -> handleDelete -> w_id', w_id)
     let worklist = this.state.worklist.filter((item) => {
       return item.w_id != w_id
     })
     let u_id = this.state.user.u_id
 
-    let json = { w_id, u_id: u_id }
+    let json = { w_id, status: -1, userId: u_id }
     const callback = (data) => {
       if (data.status) {
-        message.error('取消申请失败')
+        message.error('删除失败')
       } else {
-        message.success('取消申请成功')
+        message.success('删除成功')
         this.setState({
           worklist
         })
       }
     }
-    WorkSER.cancelApply(json, callback)
+    WorkSER.changeStatus(json, callback)
   }
 
   getWorks = (u_id) => {
@@ -79,7 +79,7 @@ class PostedWork extends React.Component {
     }
     debugger
     console.log('will: PostedWork -> getWorks -> json', json)
-    WorkSER.getMypost(json, this.callback)
+    WorkSER.getMyRelease(json, this.callback)
   }
 
   changePage = (current, pageSize) => {
@@ -125,8 +125,8 @@ class PostedWork extends React.Component {
       result.push(
         <Task
           info={this.state.worklist[i]}
-          is_post={true}
-          handleCancle={this.handleCancle}
+          if_author={true}
+          handleDelete={this.handleDelete}
         />
       )
     }
@@ -257,4 +257,4 @@ class PostedWork extends React.Component {
   }
 }
 
-export default PostedWork
+export default MyReleaseWork

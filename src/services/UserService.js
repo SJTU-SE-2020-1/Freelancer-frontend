@@ -57,16 +57,15 @@ export const checkSession = (callback) => {
 
 export const register = (data) => {
   const url = `${apiUrl}/register`
-  debugger
+  // debugger
   const callback = (data) => {
     debugger
-    if (data) {
-      // localStorage.setItem('user', JSON.stringify(data.data));
-      // history.push("/login");
+    if (data.status) {
+      message.error('注册失败，账号已存在或网络异常！')
+    } else {
+      history.push('/login')
       window.location = '/login'
       message.success('注册成功')
-    } else {
-      message.error('注册失败，账号已存在或网络异常！')
     }
   }
   postRequest(url, data, callback)
@@ -77,9 +76,6 @@ export const upLoadAvatar = (data) => {
 
   const callback = (flag) => {
     if (flag) {
-      // localStorage.setItem('user', JSON.stringify(data.data));
-      // history.push("/login");
-      // window.location="/login";
       message.success('上传成功！')
       let u = localStorage.getItem('user')
       let user = JSON.parse(u)
@@ -97,16 +93,12 @@ export const upLoadInfo = (data) => {
 
   const callback = (info) => {
     if (info != null) {
-      // localStorage.setItem('user', JSON.stringify(data.data));
-      // history.push("/login");
-      // window.location="/login";
       message.success('编辑成功！')
       let u = localStorage.getItem('user')
       let user = JSON.parse(u)
-      user.u_nickname = data.u_nickname
-      user.u_phone = data.u_phone
-      user.u_email = data.u_email
-      user.u_gender = data.u_gender
+      user.name = data.name
+      user.phone = data.phone
+      user.e_mail = data.e_mail
       debugger
       localStorage.setItem('user', JSON.stringify(user))
     } else {
@@ -126,5 +118,15 @@ export const changeType = (json, callback) => {
 
 export const changeStatus = (json, callback) => {
   const url = `${apiUrl}/changeUserStatus`
+  postRequest(url, json, callback)
+}
+
+export const changeInfo = (json, callback) => {
+  const url = `${apiUrl}/changeInfo`
+  postRequest(url, json, callback)
+}
+
+export const getPostman = (json, callback) => {
+  const url = `${apiUrl}/getPostman`
   postRequest(url, json, callback)
 }

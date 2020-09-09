@@ -1,5 +1,6 @@
 import { Button, Card, Input } from 'antd'
 import React from 'react'
+import * as UserSER from '../services/UserService'
 
 class UpAvatar extends React.Component {
   state = {
@@ -19,9 +20,12 @@ class UpAvatar extends React.Component {
     }
   }
 
+  componentDidMount() {}
+
   handleAvatarCommit = () => {
     let avatar = this.state.avatar
-    this.props.handleCommit(avatar)
+    let json = { u_id: this.props.u_id, avatar: avatar }
+    UserSER.upLoadAvatar(json)
   }
 
   render() {
@@ -50,7 +54,7 @@ class UpAvatar extends React.Component {
         />
         <Button
           type={'primary'}
-          shape='circle'
+          // shape='circle'
           className={'Editbutton'}
           onClick={this.handleAvatarCommit}
         >

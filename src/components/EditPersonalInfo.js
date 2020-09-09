@@ -1,11 +1,10 @@
-import { Button, Card, Input, Form, Tooltip, Select, Col, Row } from 'antd'
+import { Button, Card, Input, Form, Tooltip, Col, Row } from 'antd'
 import React from 'react'
 import { FormInstance } from 'antd/lib/form'
 import * as UserService from '../services/UserService'
 import { QuestionCircleOutlined } from '@ant-design/icons'
-import { Link } from 'react-router-dom'
+
 import UpAvatar from './UpAvatar'
-const { Option } = Select
 
 const formItemLayout = {
   labelCol: {
@@ -39,9 +38,9 @@ class PersonInfo extends React.Component {
   formRef = React.createRef < FormInstance > this
 
   onFinish = (values) => {
-    debugger
     console.log('Received values of form: ', values)
-    this.props.handleInfo(values)
+    if (values.name == null) values.name = this.props.user.name
+    UserService.upLoadInfo(values)
   }
 
   render() {
@@ -50,7 +49,10 @@ class PersonInfo extends React.Component {
         <Card title={'编辑个人信息'} hoverable={true}>
           <Row justify='center'>
             <Col offset={1} span={7}>
-              <UpAvatar avatar={this.props.user.avatar} />
+              <UpAvatar
+                avatar={this.props.user.avatar}
+                u_id={this.props.user.u_id}
+              />
             </Col>
             <Col offset={1} span={15}>
               <Form
@@ -64,10 +66,10 @@ class PersonInfo extends React.Component {
                 scrollToFirstError
               >
                 <Form.Item
-                  name='u_nickname'
+                  name='name'
                   label={
                     <span>
-                      Nickname&nbsp;
+                      昵称&nbsp;
                       <Tooltip title='What do you want others to call you?'>
                         <QuestionCircleOutlined />
                       </Tooltip>
@@ -81,12 +83,12 @@ class PersonInfo extends React.Component {
                     }
                   ]}
                 >
-                  <Input placeholder={this.props.user.u_nickname} />
+                  <Input placeholder={this.props.user.name} />
                 </Form.Item>
 
                 <Form.Item
-                  name='u_phone'
-                  label='Phone Number'
+                  name='phone'
+                  label='电话号码'
                   rules={[
                     {
                       required: true,
@@ -102,25 +104,25 @@ class PersonInfo extends React.Component {
                 </Form.Item>
 
                 <Form.Item
-                  name='u_email'
-                  label='E-mail'
+                  name='email'
+                  label='邮箱'
                   rules={[
                     {
                       type: 'email',
-                      message: 'The input is not valid E-mail!'
+                      message: '邮箱格式不正确'
                     },
                     {
                       required: true,
-                      message: 'Please input your E-mail!'
+                      message: '请输入您的邮箱'
                     }
                   ]}
                 >
-                  <Input placeholder={this.props.user.u_email} />
+                  <Input />
                 </Form.Item>
                 <Form {...tailFormItemLayout}>
                   <Button
                     type={'primary'}
-                    shape='circle'
+                    // shape='circle'
                     htmlType='submit'
                     // className={'Editbutton'}
                   >

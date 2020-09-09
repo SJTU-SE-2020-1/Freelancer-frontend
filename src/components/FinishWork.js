@@ -19,7 +19,7 @@ import * as WorkSER from '../services/WorkService'
 
 const { Search } = Input
 
-class PostedWork extends React.Component {
+class FinishedWork extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -58,7 +58,7 @@ class PostedWork extends React.Component {
     }
     debugger
     console.log('will: PostedWork -> getWorks -> json', json)
-    WorkSER.getMypost(json, this.callback)
+    WorkSER.getMyfinish(json, this.callback)
   }
 
   changePage = (current, pageSize) => {
@@ -230,4 +230,4 @@ class PostedWork extends React.Component {
   }
 }
 
-export default PostedWork
+export default FinishedWork

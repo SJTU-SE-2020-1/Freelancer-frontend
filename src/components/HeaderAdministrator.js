@@ -44,7 +44,7 @@ class HeaderAdministrator extends React.Component {
           </Col>
           <Col span={2}>
             <Menu.Item key='2' className='Menu_item' icon={<DesktopOutlined />}>
-              <Link to={'MyWork'}>我的项目</Link>
+              <Link to={'/MyWork'}>我的项目</Link>
             </Menu.Item>
           </Col>
           <Col span={2}>
@@ -53,7 +53,7 @@ class HeaderAdministrator extends React.Component {
               className='Menu_item'
               icon={<OrderedListOutlined />}
             >
-              <Link to={'manageUser'}>用户管理</Link>
+              <Link to={'/manageUser'}>用户管理</Link>
             </Menu.Item>
           </Col>
           <Col span={1}>
@@ -62,7 +62,7 @@ class HeaderAdministrator extends React.Component {
               className='Menu_item'
               icon={<OrderedListOutlined />}
             >
-              <Link to={'manageTask'}>任务管理</Link>
+              <Link to={'/manageTask'}>任务管理</Link>
             </Menu.Item>
           </Col>
           <Col span={3} offset={3}>

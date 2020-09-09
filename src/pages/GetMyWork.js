@@ -22,6 +22,8 @@ import HeaderAfterLogin from '../components/HeaderAfterLogin'
 import EmployerCard from '../components/employercard'
 import FreelancerCard from '../components/freelancercard'
 import PostedWork from '../components/PostedWorkList'
+import FinishedWork from '../components/FinishWork'
+import MyReleaseWork from '../components/MyReleaseWork'
 const { SubMenu } = Menu
 const { Title } = Typography
 const { Header, Content, Footer, Sider } = Layout
@@ -125,10 +127,12 @@ class MyWork extends React.Component {
 
               <div style={{ margin: '3%' }}>
                 {this.state.if_employer ? (
-                  <PostedWork />
+                  <MyReleaseWork />
                 ) : this.state.F_current == 5 ? (
                   <PostedWork />
-                ) : null}
+                ) : (
+                  <FinishedWork />
+                )}
               </div>
             </Content>
           </Layout>
