@@ -18,6 +18,16 @@ export const getMypost = (json, callback) => {
   postRequest(url, json, callback)
 }
 
+export const getMyRelease = (json, callback) => {
+  const url = `${apiUrl}/getMyRelease`
+  postRequest(url, json, callback)
+}
+
+export const getMyfinish = (json, callback) => {
+  const url = `${apiUrl}/getFinishedWorks`
+  postRequest(url, json, callback)
+}
+
 export const getWorkDetail = (json, callback) => {
   const url = `${apiUrl}/getWorkDetail`
   postRequest(url, json, callback)
@@ -40,5 +50,10 @@ export const cancelApply = (json, callback) => {
 
 export const changeStatus = (json, callback) => {
   const url = `${apiUrl}/changeWorkStatus`
+  postRequest(url, json, callback)
+}
+
+export const finishWork = (json, callback) => {
+  const url = `${apiUrl}/FinishWork`
   postRequest(url, json, callback)
 }

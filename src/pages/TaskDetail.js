@@ -20,6 +20,7 @@ import HeaderMenu from '../components/HeaderMenu'
 const { Header, Footer, Content } = Layout
 import * as WorkSER from '../services/WorkService'
 import HeaderAfterLogin from '../components/HeaderAfterLogin'
+import PostmanList from '../components/PostmanList'
 const { Paragraph } = Typography
 
 Date.prototype.format = function (format) {
@@ -183,20 +184,27 @@ class TaskDetail extends React.Component {
                     </Descriptions.Item>
                   </Descriptions>
                 ) : null}
-                <Button
-                  type='primary'
-                  onClick={this.applyWork}
-                  style={{ float: 'right' }}
-                  disabled={
-                    this.state.work
-                      ? this.state.work.status
-                        ? false
-                        : true
-                      : true
-                  }
-                >
-                  申请
-                </Button>
+                <Row justify={'end'}>
+                  <Col>
+                    <PostmanList w_id={this.props.match.params.id} />
+                  </Col>
+                  <Col offset={1}>
+                    <Button
+                      type='primary'
+                      onClick={this.applyWork}
+                      style={{ float: 'right' }}
+                      disabled={
+                        this.state.work
+                          ? this.state.work.status
+                            ? false
+                            : true
+                          : true
+                      }
+                    >
+                      申请
+                    </Button>
+                  </Col>
+                </Row>
               </Card>
             </Col>
             <Col offset={1} span={6}>

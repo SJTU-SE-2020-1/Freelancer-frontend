@@ -1,22 +1,38 @@
 import React from 'react'
-import { Card, Tag, Row } from 'antd'
+import { Card, Tag, Row, Button, Popconfirm, Col } from 'antd'
 import '../css/Task.css'
 import { Link } from 'react-router-dom'
+import FinishForm from './FInishWorkForm'
 
 export class Task extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      workinfo: {}
+      workinfo: {},
+      if_author: false,
+      is_post: false
     }
   }
+
+  handleDelete = (w_id) => {
+    console.log('will: Task -> handleDelete -> w_id', w_id)
+    this.props.handleDelete(w_id)
+  }
+  handleCancle = (w_id) => {
+    console.log('will: Task -> handleCancle -> w_id', w_id)
+    this.props.handleCancle(w_id)
+  }
+
   componentDidMount() {
     console.log(
       'will: Task -> componentDidMount -> this.props.info',
       this.props.info
     )
-
-    this.setState({ workinfo: this.props.info })
+    let if_author = false,
+      is_post = false
+    if (this.props.if_author) if_author = true
+    if (this.props.is_post) is_post = true
+    this.setState({ workinfo: this.props.info, if_author, is_post })
   }
 
   GetDescription = () => {
@@ -75,6 +91,28 @@ export class Task extends React.Component {
         }
       >
         {this.GetDescription()}
+
+        {this.state.if_author ? (
+          <Row justify={'end'}>
+            <Popconfirm
+              title='确认删除?'
+              onConfirm={() => this.handleDelete(this.state.workinfo.w_id)}
+            >
+              <a>删除</a>
+            </Popconfirm>
+            <Col offset={2}></Col>
+            {this.props.info.status > 0 ? (
+              <FinishForm w_id={this.props.info.w_id} />
+            ) : null}
+          </Row>
+        ) : this.state.is_post ? (
+          <Popconfirm
+            title='确认取消申请?'
+            onConfirm={() => this.handleCancle(this.state.workinfo.w_id)}
+          >
+            <a>取消申请</a>
+          </Popconfirm>
+        ) : null}
       </Card>
     )
   }

@@ -3,9 +3,7 @@ import { Card, Row, Col, Rate, Tag, Tooltip, Statistic, Button } from 'antd'
 import {
   SnippetsOutlined,
   HighlightOutlined,
-  HeartOutlined,
-  EyeOutlined,
-  UserOutlined
+  HeartOutlined
 } from '@ant-design/icons'
 import UNknown from '../assets/unknown.png'
 import PersonInfo from './EditPersonalInfo'
@@ -144,7 +142,7 @@ class FreelancerCard extends React.Component {
                 <br />
                 <Row style={{ fontSize: '18px' }}>
                   <b style={{ color: 'green' }}>邮箱：</b>
-                  {this.state.user.email}
+                  {this.state.user.e_mail}
                 </Row>
               </Col>
             </Row>

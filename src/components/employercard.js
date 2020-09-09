@@ -154,7 +154,7 @@ class EmployerCard extends React.Component {
                 <br />
                 <Row style={{ fontSize: '18px' }}>
                   <b style={{ color: 'green' }}>邮箱：</b>
-                  {this.state.user.email}
+                  {this.state.user.e_mail}
                 </Row>
               </Col>
             </Row>
